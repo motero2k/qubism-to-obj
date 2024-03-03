@@ -1,0 +1,113 @@
+{
+    "type": "Qubism-Model",
+    "version": 4,
+    "scale": 0,
+    "unit": "None",
+    "camera": {
+     "latitude": 0.31968462467193604,
+     "longitude": -0.8851863741874695,
+     "altitude": 4137.9384765625,
+     "focus_x": 527.48193359375,
+     "focus_y": -346.6130676269531,
+     "focus_z": 539.2965087890625,
+     "orientation": 135
+    },
+    "qubes": [
+     {
+      "id": "923e2186-832d-45dc-85b7-0bc542bb9be0",
+      "pos_x": 0,
+      "size_x": 256,
+      "pos_y": 256,
+      "size_y": 768,
+      "pos_z": 256,
+      "size_z": 1024,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "dd55de70-4da2-4ed5-88e4-47dfe39fdf87",
+      "pos_x": 0,
+      "size_x": 1024,
+      "pos_y": 256,
+      "size_y": 768,
+      "pos_z": -512,
+      "size_z": 768,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "de4fc9d7-796c-491e-b9b7-905af0542ad0",
+      "pos_x": 0,
+      "size_x": 256,
+      "pos_y": -512,
+      "size_y": 768,
+      "pos_z": 512,
+      "size_z": 256,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "adc4f684-7ea2-4998-ba0f-c42eae578e09",
+      "pos_x": 0,
+      "size_x": 256,
+      "pos_y": -1024,
+      "size_y": 1280,
+      "pos_z": 0,
+      "size_z": 256,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "156b5263-e728-451d-a27b-3fb04d72bb32",
+      "pos_x": 0,
+      "size_x": 256,
+      "pos_y": -256,
+      "size_y": 512,
+      "pos_z": 768,
+      "size_z": 256,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "f38f867a-3fe7-42a7-b692-d22fc48f16b0",
+      "pos_x": 256,
+      "size_x": 768,
+      "pos_y": -1280,
+      "size_y": 1536,
+      "pos_z": 0,
+      "size_z": 256,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "63d7a511-aad2-46bd-944c-9b7b2cf3de74",
+      "pos_x": 0,
+      "size_x": 256,
+      "pos_y": -768,
+      "size_y": 1024,
+      "pos_z": 256,
+      "size_z": 256,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     },
+     {
+      "id": "050c43ef-3d6d-4031-99ec-4d1e37ccfc6b",
+      "pos_x": 0,
+      "size_x": 256,
+      "pos_y": 0,
+      "size_y": 256,
+      "pos_z": 1024,
+      "size_z": 256,
+      "colour": 16777215,
+      "shape": 255,
+      "orient": -1
+     }
+    ]
+   }
