@@ -1,4 +1,5 @@
-const { transpose, matrix, multiply, sin, cos, pi } = require('mathjs');
+const { transpose, matrix, multiply, sin, cos, pi, round } = require('mathjs');
+
 class Object3d {
 
     constructor(vertices=[], faces=[], name="untitled-part") {
@@ -19,7 +20,8 @@ class Object3d {
             return vertexCopy
         })
         const verticesMatrix = transpose(matrix(vertices))
-        this.vertices = transpose(multiply(transformMatrix,verticesMatrix)).toArray()
+        const newVertices = transpose(multiply(transformMatrix,verticesMatrix)).toArray()
+        this.vertices = round(newVertices, 8);
         return this;
     }
     scale(scalingV=[1,1,1]){
@@ -55,7 +57,8 @@ class Object3d {
             return vertexCopy
         })
         const verticesMatrix = transpose(matrix(vertices))
-        this.vertices = transpose(multiply(rotationMatrix,verticesMatrix)).toArray()
+        const newVertices = transpose(multiply(rotationMatrix,verticesMatrix)).toArray()
+        this.vertices = round(newVertices, 8);
         return this;
     }
     copy(){

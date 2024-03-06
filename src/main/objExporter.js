@@ -6,8 +6,7 @@ const { Object3d, MultiObject3d } = require('./object');
  * @param {string} multiObject.name - The name of the multiObject
  * @param {Object3d[]} multiObject.subObjects - The subObjects of the multiObject
  */
-function exportObj(multiObject) {
-    const outputPath = 'src/output/';
+function exportObj(multiObject, outputPath = 'src/output/') {
     const filePath = outputPath + (multiObject.name?? "untiled-"+Date.now() )+'.obj';
     let objContent = '';
     let vertexAccumulator = 0;

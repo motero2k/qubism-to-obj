@@ -10,8 +10,6 @@
   "author": "motero2k",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.3",
-    "math": "^0.0.3",
     "mathjs": "^12.4.0"
   }
 }
