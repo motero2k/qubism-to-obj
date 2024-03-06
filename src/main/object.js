@@ -2,10 +2,10 @@ const { transpose, matrix, multiply, sin, cos, pi, round } = require('mathjs');
 
 class Object3d {
 
-    constructor(vertices=[], faces=[], name="untitled-part") {
+    constructor(name="untitled",vertices=[], faces=[]) {
+        this.name = name ?? "untitled";
         this.vertices = vertices
         this.faces = faces;
-        this.name = name ?? "untitled-part";
     }
     transform(scalingV=[1,1,1],transationV=[0,0,0]){
         const transformMatrix = matrix([
@@ -62,10 +62,39 @@ class Object3d {
         return this;
     }
     copy(){
-        return new Object3d(this.vertices,this.faces);
+        return new Object3d(this.name,this.vertices,this.faces);
     }
     setName(name){
         this.name = name;
+        return this;
+    }
+    createFromShape(shape){
+        return new Object3d(shape.name,shape.vertices,shape.faces);
+    }
+    changeAxis(orient){
+        if(orient == -1) return this;
+        console.log("orient",orient)
+        const paddedOrient = String(orient).padStart(3,"0")
+        const getNewAxis = (oldAxisId) => {
+            // x=0,y=2,z=4 means negative
+            // x=1,y=3,z=5 means positive
+            const negativeAxis = paddedOrient.indexOf(oldAxisId)
+            const positiveAxis = paddedOrient.indexOf(oldAxisId+1)
+            if(negativeAxis!=-1) return {oldIndex: negativeAxis, sign: -1}
+            else return {oldIndex: positiveAxis, sign: 1}
+        }
+        let newXaxis = getNewAxis(0)
+        let newYaxis = getNewAxis(2)
+        let newZaxis = getNewAxis(4)
+        const oldVectors= transpose(this.vertices)
+        const newVectors= [
+            oldVectors[newXaxis.oldIndex].map(x=>x*newXaxis.sign),
+            oldVectors[newYaxis.oldIndex].map(y=>y*newYaxis.sign),
+            oldVectors[newZaxis.oldIndex].map(z=>z*newZaxis.sign),
+            oldVectors[3]
+        ]
+    
+        this.vertices = transpose(newVectors)
         return this;
     }
 
