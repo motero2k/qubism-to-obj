@@ -7,11 +7,11 @@ class Object3d {
         this.vertices = vertices
         this.faces = faces;
     }
-    transform(scalingV=[1,1,1],transationV=[0,0,0]){
+    transform(scalingV=[1,1,1],translationV=[0,0,0]){
         const transformMatrix = matrix([
-            [scalingV[0],0,0,transationV[0]],
-            [0,scalingV[1],0,transationV[1]],
-            [0,0,scalingV[2],transationV[2]],
+            [scalingV[0],0,0,translationV[0]],
+            [0,scalingV[1],0,translationV[1]],
+            [0,0,scalingV[2],translationV[2]],
             [0,0,0,1]
         ]);
         const vertices = this.vertices.map(vertex=> {
@@ -68,32 +68,35 @@ class Object3d {
         this.name = name;
         return this;
     }
-    createFromShape(shape){
-        return new Object3d(shape.name,shape.vertices,shape.faces);
+    setShape(shape){
+        this.name = shape.name;
+        this.vertices = shape.vertices;
+        this.faces = shape.faces;
+        return this
     }
     changeAxis(orient){
         if(orient == -1) return this;
-        console.log("orient",orient)
-        const paddedOrient = String(orient).padStart(3,"0")
-        const getNewAxis = (oldAxisId) => {
-            // x=0,y=2,z=4 means negative
-            // x=1,y=3,z=5 means positive
-            const negativeAxis = paddedOrient.indexOf(oldAxisId)
-            const positiveAxis = paddedOrient.indexOf(oldAxisId+1)
-            if(negativeAxis!=-1) return {oldIndex: negativeAxis, sign: -1}
-            else return {oldIndex: positiveAxis, sign: 1}
+
+        const getOldIndexes = (paddedOrient)=>{
+            const axisConversion = {
+                0: {oldIndex: 0, sign: -1}, //old X 
+                1: {oldIndex: 0, sign: 1}, //old X
+                2: {oldIndex: 1, sign: -1}, //old Y
+                3: {oldIndex: 1, sign: 1}, //old Y
+                4: {oldIndex: 2, sign: -1}, //old Z
+                5: {oldIndex: 2, sign: 1} //old Z
+            };
+            return {x: axisConversion[paddedOrient[0]], y: axisConversion[paddedOrient[1]], z: axisConversion[paddedOrient[2]]};
         }
-        let newXaxis = getNewAxis(0)
-        let newYaxis = getNewAxis(2)
-        let newZaxis = getNewAxis(4)
+        const paddedOrient = String(orient).padStart(3,"0") //add leading zeros to make it 3 digits
+        const newAxis = getOldIndexes(paddedOrient)
         const oldVectors= transpose(this.vertices)
         const newVectors= [
-            oldVectors[newXaxis.oldIndex].map(x=>x*newXaxis.sign),
-            oldVectors[newYaxis.oldIndex].map(y=>y*newYaxis.sign),
-            oldVectors[newZaxis.oldIndex].map(z=>z*newZaxis.sign),
+            oldVectors[newAxis.x.oldIndex].map(x=>x*newAxis.x.sign),
+            oldVectors[newAxis.y.oldIndex].map(y=>y*newAxis.y.sign),
+            oldVectors[newAxis.z.oldIndex].map(z=>z*newAxis.z.sign),
             oldVectors[3]
         ]
-    
         this.vertices = transpose(newVectors)
         return this;
     }

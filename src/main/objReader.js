@@ -10,7 +10,6 @@ function loadObj(objFilename) {
 
     for (const line of lines) {
         const tokens = line.trim().split(/\s+/);
-
         if (tokens[0] === 'o') {
             objName = tokens.slice(1).join('-');
         } else if (tokens[0] === 'v') {

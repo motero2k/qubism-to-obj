@@ -1,5 +1,24 @@
 const { writeFileSync } = require('fs');
 const { Object3d, MultiObject3d } = require('./object');
+const path = require('path');
+const shapes = require(path.join(__dirname)+'/shapes.json');
+function uptateShapesJsonFile(object3d, id) {
+    shapes[id] = object3d;
+    try {
+        const jsonContent = JSON.stringify(shapes, null, 2)
+        // remove the extra spaces in the json file
+        .replace(/(\n(\s)+(\d|\-\d|\+\d))|(\n\s+\])/g, function(match) {
+            return match.replace(/\n\s+/,"")
+        })
+
+        writeFileSync(path.join(__dirname)+'/shapes.json', jsonContent);
+        console.log(`shapes.json updated`);
+    } catch (err) {
+        console.error(`Error writing shapes.json file: ${err}`);
+    }
+}
+
+
 
 function exportObj(object3d, outputPath = 'src/output/') {
     const filePath = outputPath + (object3d.name ?? "untiled-" + Date.now()) + '.obj';
@@ -74,4 +93,4 @@ function exportMultiObj(multiObject, outputPath = 'src/output/') {
     }
 }
 
-module.exports = { exportObj , exportMultiObj};
+module.exports = { exportObj , exportMultiObj, uptateShapesJsonFile};
