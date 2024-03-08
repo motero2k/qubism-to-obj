@@ -12,7 +12,7 @@ function readQubismJsonToMultiObject3D(filename, scale = 1 / 256) {
         console.error(
           `Shape ${qube.shape} not found in shapes folder using default cube.`,
         );
-        qube.shape = 255;
+        qube.shape = 263;
       }
       const shape = shapes[qube.shape]; //shapes are contined in a 1x1x1 unit cube
       const object3d = new Object3d(shape.name, shape.vertices, shape.faces) //shape centered at 0,0,0

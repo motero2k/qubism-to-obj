@@ -12,7 +12,7 @@ const qubismScale = 1 / 256;
 
 // ====== TRANSFORM QUBISM JSON TO OBJ =======
 const loadedQubismMultiObj3d = readQubismJsonToMultiObject3D(
-  "complicated-rounded",
+  "all-directions",
   qubismScale,
 );
 exportMultiObj(loadedQubismMultiObj3d);
