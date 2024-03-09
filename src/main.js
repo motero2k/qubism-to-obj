@@ -11,13 +11,23 @@ const shapes = require(path.join(__dirname, "main") + "/shapes.json");
 const qubismScale = 1 / 256;
 
 // ====== TRANSFORM QUBISM JSON TO OBJ =======
-const loadedQubismMultiObj3d = readQubismJsonToMultiObject3D(
-  "all-directions",
-  qubismScale,
-);
-exportMultiObj(loadedQubismMultiObj3d);
+// read all files in src/input folder
+const fs = require("fs");
+const inputs = fs.readdirSync("src/input");
+const outputs = fs.readdirSync("src/output");
+inputs.forEach((file) => {
+  if (file.includes(".json") && !outputs.includes(file.split(".")[0] + ".obj")){
+    const filename = file.split(".")[0];
+    const loadedQubismMultiObj3d = readQubismJsonToMultiObject3D(
+      filename,
+      qubismScale,
+    );
+    exportMultiObj(loadedQubismMultiObj3d);
+  }
+});
 
-let object3d = new Object3d();
+
+// let object3d = new Object3d();
 // ================== READ ===================
 // FROM SHAPES.JSON
 // let shape = shapes[263]
