@@ -12,7 +12,7 @@ function readQubismJsonToMultiObject3D(filename, scale = 1 / 256) {
         console.error(
           `Shape ${qube.shape} not found in shapes folder using default cube.`,
         );
-        qube.shape = 263;
+        qube.shape = 255;
       }
       qube.size_x = qube.size_x * scale;
       qube.size_y = qube.size_y * scale;
@@ -20,18 +20,14 @@ function readQubismJsonToMultiObject3D(filename, scale = 1 / 256) {
       qube.pos_x = qube.pos_x * scale;
       qube.pos_y = qube.pos_y * scale;
       qube.pos_z = qube.pos_z * scale;
-      const shape = shapes[qube.shape]; //shapes are contined in a 1x1x1 unit cube
+      const shape = shapes[qube.shape]; //all shapes are contained in a 1x1x1 unit cube (bounding box)
       const object3d = new Object3d(shape.name, shape.vertices, shape.faces) //shape centered at 0,0,0
-        .changeAxis(qube.orient) //shapes can be oriented in 24 different ways
+        .changeAxis(qube.orient) //shapes can be oriented in 24 different ways, this function changes the axis order to match the orientation.
         // SCALING
         .translate([0.5, 0.5, 0.5]) //takes the cube to positive quadrant
         .scale([qube.size_x, qube.size_y, qube.size_z]) //scaling in the positive direction
-        // .translate([-0.5, -0.5, -0.5]) // return to original position (maybe is taller or wider now)
-        object3d.translate([
-          qube.pos_x,
-          qube.pos_y,
-          qube.pos_z,
-        ]); //move to the final position
+        // TRANSLATION
+        object3d.translate([qube.pos_x,qube.pos_y,qube.pos_z,]); //move to the final position
         // ROTATION
         if(qube.rot_axis != undefined && qube.rot_angle != undefined) {
           qube.rot_x = qube.rot_x * scale;
@@ -40,13 +36,11 @@ function readQubismJsonToMultiObject3D(filename, scale = 1 / 256) {
           const rot_vector = [0, 0, 0];
             rot_vector[qube.rot_axis] =  -qube.rot_angle;
             console.log("Rotation detected", rot_vector);
-            object3d.setName(shape.name + "_rotated"+qube.rot_axis+"->"+qube.rot_angle)
-            object3d.translate([-qube.rot_x, -qube.rot_y  , -qube.rot_z]); //move to the rotation axis to one of the origin axis
+            object3d.setName(shape.name + "-"+qube.orient)
+            object3d.translate([-qube.rot_x, -qube.rot_y  , -qube.rot_z]); //moves the rotation axis (one of the edges of the bounding box) to one of the origin axis
             object3d.rotate(rot_vector) 
-            object3d.translate([+qube.rot_x, +qube.rot_y , +qube.rot_z]); //move back to the original position
+            object3d.translate([+qube.rot_x, +qube.rot_y , +qube.rot_z]); //moves back to the final position
         }
-
-
 
       multiObject3D.subObjects.push(object3d);
     });

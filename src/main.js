@@ -10,7 +10,27 @@ const path = require("path");
 const shapes = require(path.join(__dirname, "main") + "/shapes.json");
 const qubismScale = 1 / 256;
 
-// ====== TRANSFORM QUBISM JSON TO OBJ =======
+
+
+
+let object3d = new Object3d();
+// ================== READ =================================
+// FROM SHAPES.JSON
+// let shape = shapes[263]
+// object3d.setShape(shape)
+
+// FROM OBJ src/shapes folder
+// object3d = loadObj("corner-square-round")
+
+// ================== WRITE ================================
+
+// TO SHAPES.JSON src/main/shapes.json
+// uptateShapesJsonFile(object3d, 265)
+
+// TO OBJ src/output/
+// exportObj(object3d)
+
+// ====== TRANSFORM QUBISM JSON TO OBJ =====================
 // read all files in src/input folder
 const fs = require("fs");
 const inputs = fs.readdirSync("src/input");
@@ -25,21 +45,3 @@ inputs.forEach((file) => {
     exportMultiObj(loadedQubismMultiObj3d);
   }
 });
-
-
-// let object3d = new Object3d();
-// ================== READ ===================
-// FROM SHAPES.JSON
-// let shape = shapes[263]
-// object3d.setShape(shape)
-
-// FROM OBJ src/shapes folder
-// object3d = loadObj("rounded-edge")
-
-// ================== WRITE ==================
-
-// TO SHAPES.JSON src/main/shapes.json
-// uptateShapesJsonFile(object3d, 263)
-
-// TO OBJ src/output/
-// exportObj(object3d)
