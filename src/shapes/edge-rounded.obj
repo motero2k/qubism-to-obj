@@ -1,6 +1,6 @@
 # Blender 3.6.1
 # www.blender.org
-o rounded-edge
+o edge-rounded
 v -0.500000 -0.500000 0.500000
 v -0.500000 0.500000 0.500000
 v -0.500000 -0.500000 -0.500000

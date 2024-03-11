@@ -20,12 +20,12 @@ let object3d = new Object3d();
 // object3d.setShape(shape)
 
 // FROM OBJ src/shapes folder
-// object3d = loadObj("corner-square-round")
+// object3d = loadObj("x")
 
 // ================== WRITE ================================
 
 // TO SHAPES.JSON src/main/shapes.json
-// uptateShapesJsonFile(object3d, 265)
+// uptateShapesJsonFile(object3d, 0)
 
 // TO OBJ src/output/
 // exportObj(object3d)

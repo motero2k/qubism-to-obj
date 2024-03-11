@@ -27,7 +27,7 @@ function readQubismJsonToMultiObject3D(filename, scale = 1 / 256) {
         .translate([0.5, 0.5, 0.5]) //takes the cube to positive quadrant
         .scale([qube.size_x, qube.size_y, qube.size_z]) //scaling in the positive direction
         // TRANSLATION
-        object3d.translate([qube.pos_x,qube.pos_y,qube.pos_z,]); //move to the final position
+        .translate([qube.pos_x,qube.pos_y,qube.pos_z,]); //move to the final position
         // ROTATION
         if(qube.rot_axis != undefined && qube.rot_angle != undefined) {
           qube.rot_x = qube.rot_x * scale;
@@ -37,9 +37,9 @@ function readQubismJsonToMultiObject3D(filename, scale = 1 / 256) {
             rot_vector[qube.rot_axis] =  -qube.rot_angle;
             console.log("Rotation detected", rot_vector);
             object3d.setName(shape.name + "-"+qube.orient)
-            object3d.translate([-qube.rot_x, -qube.rot_y  , -qube.rot_z]); //moves the rotation axis (one of the edges of the bounding box) to one of the origin axis
-            object3d.rotate(rot_vector) 
-            object3d.translate([+qube.rot_x, +qube.rot_y , +qube.rot_z]); //moves back to the final position
+              .translate([-qube.rot_x, -qube.rot_y  , -qube.rot_z]) //moves the rotation axis (one of the edges of the bounding box) to one of the origin axis
+              .rotate(rot_vector) 
+              .translate([+qube.rot_x, +qube.rot_y , +qube.rot_z]) //moves back to the final position
         }
 
       multiObject3D.subObjects.push(object3d);
