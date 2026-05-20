@@ -1,1 +1,17 @@
 node_modules
+
+# Ignore user conversion files by default.
+src/input/*
+src/output/*
+
+# Keep the bundled examples in the repository.
+!src/input/DNA-rotations.json
+!src/input/all-directions.json
+!src/input/all-figures.json
+!src/input/complicated-rounded.json
+!src/input/xyz.json
+!src/output/DNA-rotations.obj
+!src/output/all-directions.obj
+!src/output/all-figures.obj
+!src/output/complicated-rounded.obj
+!src/output/xyz.obj

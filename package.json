@@ -9,7 +9,7 @@
     "prettier": "prettier --write **.js"
   },
   "author": "motero2k",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "mathjs": "^12.4.0",
     "path": "^0.12.7"
